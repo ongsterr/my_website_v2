@@ -6,6 +6,7 @@ require('dotenv').config();
 // Requiring in models (before routers)
 const passportConfig = require('./config/passport');
 const userModel = require('./models/User');
+const articleModel = require('./models/Article');
 
 // Requiring in routers
 const router = require('./routes');

@@ -6,4 +6,4 @@ frontend/node_modules
 backend/.env
 
 # HTTP files
-backend/routes/api/*.http
+backend/routes/tests
