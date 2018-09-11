@@ -4,3 +4,6 @@ frontend/node_modules
 
 # Environment variables
 backend/.env
+
+# HTTP files
+backend/routes/api/*.http
