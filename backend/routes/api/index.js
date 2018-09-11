@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const userRouter = require('./users');
 const articleRouter = require('./articles');
+const tagRouter = require('./tags');
 
 router.use('/', userRouter);
 router.use('/articles', articleRouter);
+router.use('/tags', tagRouter);
 
 router.use((err, req, res, next) => {
   console.log(err);
