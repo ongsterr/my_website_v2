@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const User = mongoose.model('User');
 
-router.post('/users', (req, res, next) => {
+router.post('/', (req, res, next) => {
   const user = new User();
 
   user.username = req.body.user.username;
@@ -21,7 +21,7 @@ router.post('/users', (req, res, next) => {
     .catch(next);
 });
 
-router.post('/users/login', (req, res, next) => {
+router.post('/login', (req, res, next) => {
   if (!req.body.user.email) {
     return res.status(422).json({
       errors: { email: "can't be blank" },
