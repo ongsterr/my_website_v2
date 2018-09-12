@@ -13,6 +13,30 @@ servers:
   - url: https://chrisongg.com/api
 paths:
   /api/users:
+    get:
+      description: Return user username, email and token
+      operationId: getUser
+      tags:
+        - User
+      responses:
+        '200':
+          description: Return user username, email and token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: User not authorised to performed action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       description: Create user account
       operationId: addUser

@@ -50,4 +50,17 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
+router.get('/user', auth.required, (req, res, next) => {
+  User.findById(req.payload.id)
+    .then(user => {
+      if (!user) {
+        return res.sendStatus(401);
+      }
+      return res.json({
+        user: user.toAuthJSON(),
+      });
+    })
+    .catch(next);
+});
+
 module.exports = router;
