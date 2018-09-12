@@ -2,6 +2,8 @@ const router = require('express').Router();
 const passport = require('passport');
 const mongoose = require('mongoose');
 
+const auth = require('../auth');
+
 const User = mongoose.model('User');
 
 router.post('/', (req, res, next) => {
