@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { Articles } from 'api';
+import api from 'api';
 
 const mapDispatchToProps = dispatch => ({
   onClickDelete: payload => dispatch({ type: 'DELETE_ARTICLE', payload }),
@@ -10,7 +10,7 @@ const mapDispatchToProps = dispatch => ({
 
 const ArticleActions = ({ article, onClickDelete, canModify }) => {
   const del = () => {
-    onClickDelete(Articles.del(article.slug));
+    onClickDelete(api.Articles.del(article.slug));
   };
 
   return canModify ? (

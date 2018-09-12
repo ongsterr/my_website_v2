@@ -41,6 +41,7 @@ const requests = {
 };
 
 const limit = (count, p) => `limit=${count}&offset=${p ? p : 0}`;
+const omitSlug = article => Object.assign({}, article, { slug: undefined });
 
 const Articles = {
   all: page => requests.get(`/articles?${limit(10, page)}`),
