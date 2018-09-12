@@ -6,6 +6,7 @@ frontend/node_modules
 
 # Environment variables
 backend/.env
+frontend/.env
 
 # HTTP files
 backend/routes/tests
