@@ -1,0 +1,287 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: My Life Store
+  description: API to serve my personal website
+  contact:
+    name: Christopher Ong
+    email: ong.chris11@gmail.com
+    url: https://chrisongg.com
+  license:
+    name: MIT
+servers:
+  - url: https://chrisongg.com/api
+paths:
+  /api/users:
+    post:
+      description: Create user account
+      operationId: addUser
+      tags:
+        - User
+      requestBody:
+        description: User account to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        '200':
+          description: Return user username, email and token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/users/login:
+    post:
+      description: Login to user account
+      operationId: userLogin
+      tags:
+        - User
+      requestBody:
+        description: User account to login
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+      responses:
+        '200':
+          description: Return user username, email and token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/articles:
+    get:
+      description: Get all articles from database
+      operationId: getArticles
+      tags:
+        - Articles
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of articles from API call
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          description: Skip number of articles from API call
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Returns all the articles in database
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Articles'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      description: Create a new article
+      operationId: postArticle
+      tags:
+        - Articles
+      requestBody:
+        description: New article to add
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+      responses:
+        '200':
+          description: Returns the article created/added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+        '401':
+          description: User not authorised to performed action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/articles/{:article}:
+    get:
+      description: Return an article based on article slug
+      operationId: getArticle
+      tags:
+        - Articles
+      responses:
+        '200':
+          description: Returns the article requested
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      description: Update an article based on article slug
+      operationId: updateArticle
+      tags:
+        - Articles
+      responses:
+        '200':
+          description: Returns the article updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+        '403':
+          description: User not authorised to performed action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      description: Delete an article based on article slug
+      operationId: deleteArticle
+      tags:
+        - Articles
+      responses:
+        '204':
+          description: The server has successfully fulfilled the request and that there is no additional content to send in the response payload body
+        '403':
+          description: User not authorised to performed action
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tags:
+    get:
+      description: Return all tags from all articles
+      operationId: getTags
+      tags:
+        - Tags
+      responses:
+        '200':
+          description: Return all tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    NewUser:
+      type: object
+      required:
+        - username
+        - email
+        - password
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+          format: password
+    UserLogin:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+          format: password
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        token:
+          type: string
+          description: JWT used to access resources requiring auth
+    Articles:
+      type: array
+      items:
+        $ref: '#/components/schemas/Article'
+    Article:
+      type: object
+      properties:
+        slug:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        body:
+          type: string
+        createdAt:
+          type: string,
+          format: date-time
+        updatedAt:
+          type: string,
+          format: date-time
+        tagList:
+          type: array
+          items:
+            type: string
+    Error:
+      type: object
+      properties:
+        errors:
+          type: object
+          properties:
+            message:
+              type: string
+            error:
+              type: string
