@@ -9,9 +9,18 @@ const LoggedOutView = ({ currentUser }) =>
           Home
         </Link>
       </li>
-
       <li className="">
-        <Link to="login" className="">
+        <Link to="/thoughts" className="">
+          Thoughts
+        </Link>
+      </li>
+      <li className="">
+        <Link to="/contact" className="">
+          Connect
+        </Link>
+      </li>
+      <li className="">
+        <Link to="/login" className="">
           Sign in
         </Link>
       </li>
@@ -22,22 +31,24 @@ const LoggedInView = ({ currentUser }) =>
   currentUser ? (
     <ul className="">
       <li className="">
-        <Link to="" className="">
+        <Link to="/" className="">
           Home
         </Link>
       </li>
-
       <li className="">
-        <Link to="editor" className="">
-          <i className="" />
-          &nbsp;New Post
+        <Link to="/thoughts" className="">
+          Thoughts
         </Link>
       </li>
-
       <li className="">
-        <Link to={`@${currentUser.username}`} className="">
-          <img src={currentUser.image} className="" alt="user" />
-          {currentUser.username}
+        <Link to="/contact" className="">
+          Connect
+        </Link>
+      </li>
+      <li className="">
+        <Link to="/editor" className="">
+          <i className="" />
+          &nbsp;New Post
         </Link>
       </li>
     </ul>
