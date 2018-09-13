@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router';
+import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
+import Login from 'components/Login';
 import Article from 'components/Article';
 import ArticleList from 'components/Article/ArticleList';
 
@@ -21,6 +23,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class App extends Component {
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   componentDidMount() {
     const token = window.localStorage.getItem('jwt');
     if (token) {
@@ -28,9 +34,10 @@ class App extends Component {
     }
     this.props.onLoad(token ? api.Auth.current() : null, token);
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.redirectTo) {
-      this.context.router.replace(nextProps.redirectTo);
+      this.context.router.history.push(nextProps.redirectTo);
       this.props.onRedirect();
     }
   }
@@ -41,6 +48,7 @@ class App extends Component {
       <div>
         <Header appName={appName} currentUser={currentUser} />
 
+        <Route path="/login" component={Login} />
         <Route path="/articles" component={ArticleList} />
         <Route path="/article/:id" component={Article} />
       </div>
