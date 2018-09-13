@@ -11,9 +11,9 @@ const ArticleList = ({ articles, articlesCount, currentPage, onSetPage }) => {
     return <div className="">No articles are here... yet.</div>;
   }
 
-  const articlesFeed = articles.map(article => {
-    return <ArticlePreview article={article} key={article.slug} />;
-  });
+  const articlesFeed = articles.map(article => (
+    <ArticlePreview article={article} key={article.slug} />
+  ));
 
   return (
     <div>

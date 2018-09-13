@@ -14,9 +14,6 @@ const ArticlePreview = ({ article }) => {
     <div className="">
       <div className="">
         <div className="info">
-          <Link className="author" to={`@${article.author.username}`}>
-            {article.author.username}
-          </Link>
           <span className="date">
             {new Date(article.createdAt).toDateString()}
           </span>
