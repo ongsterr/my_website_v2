@@ -61,7 +61,7 @@ const Tags = {
 const Auth = {
   login: (email, password) =>
     requests.post('/users/login', { user: { email, password } }),
-  current: () => requests.get('/user'),
+  current: () => requests.get('/users'),
   register: (username, email, password) =>
     requests.post('/users', { user: { username, email, password } }),
 };

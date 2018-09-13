@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
 import Login from 'components/Login';
+import Editor from 'components/Editor';
 import Article from 'components/Article';
-import ArticleList from 'components/Article/ArticleList';
+import Articles from 'components/Articles';
 
 import api from 'api';
 
@@ -48,9 +49,13 @@ class App extends Component {
       <div>
         <Header appName={appName} currentUser={currentUser} />
 
-        <Route path="/login" component={Login} />
-        <Route path="/articles" component={ArticleList} />
-        <Route path="/article/:id" component={Article} />
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/editor" component={Editor} />
+          <Route path="/editor/:slug" component={Editor} />
+          <Route exact path="/articles" component={Articles} />
+          <Route path="/article/:id" component={Article} />
+        </Switch>
       </div>
     ) : (
       <div>
