@@ -98,30 +98,26 @@ router.post('/', auth.required, (req, res, next) => {
 });
 
 router.put('/:article', auth.required, (req, res, next) => {
-  if (req.article.author._id.toString() === req.payload.id.toString()) {
-    if (typeof req.body.article.title !== 'undefined') {
-      req.article.title = req.body.article.title;
-    }
-
-    if (typeof req.body.article.description !== 'undefined') {
-      req.article.description = req.body.article.description;
-    }
-
-    if (typeof req.body.article.body !== 'undefined') {
-      req.article.body = req.body.article.body;
-    }
-
-    req.article
-      .save()
-      .then(article => {
-        return res.json({
-          article: article.toJSONFor(),
-        });
-      })
-      .catch(next);
-  } else {
-    return res.sendStatus(403);
+  if (typeof req.body.article.title !== 'undefined') {
+    req.article.title = req.body.article.title;
   }
+
+  if (typeof req.body.article.description !== 'undefined') {
+    req.article.description = req.body.article.description;
+  }
+
+  if (typeof req.body.article.body !== 'undefined') {
+    req.article.body = req.body.article.body;
+  }
+
+  req.article
+    .save()
+    .then(article => {
+      return res.json({
+        article: article.toJSONFor(),
+      });
+    })
+    .catch(next);
 });
 
 router.delete('/:article', auth.required, (req, res, next) => {
