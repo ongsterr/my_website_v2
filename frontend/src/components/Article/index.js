@@ -17,8 +17,8 @@ const mapDispatchToProps = dispatch => ({
 
 class Article extends Component {
   componentWillMount() {
-    const { onLoad, params } = this.props;
-    onLoad(Promise.all([api.Articles.get(params.id)]));
+    const { onLoad, match } = this.props;
+    onLoad(Promise.all([api.Articles.get(match.params.id)]));
   }
 
   componentWillUnmount() {
@@ -27,13 +27,12 @@ class Article extends Component {
 
   render() {
     const { article, currentUser } = this.props;
-    const markup = { __html: marked(article.body) }; // What is this doing? "Marked" parse markdown to HTML.
-    const canModify =
-      currentUser && currentUser.username === article.author.username;
-
     if (!article) {
       return null;
     }
+
+    const markup = { __html: marked(article.body) }; // What is this doing? "Marked" parse markdown to HTML.
+    const canModify = currentUser && currentUser.username;
 
     const tags = article.tagList.map(tag => (
       <li className="" key={tag}>
