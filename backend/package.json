@@ -1,6 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
+  "private": true,
   "description": "Backend server for my personal website",
   "main": "app.js",
   "scripts": {
@@ -13,6 +14,7 @@
   "author": "chrisongg",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "express-jwt": "^5.3.1",
     "jsonwebtoken": "^8.3.0",

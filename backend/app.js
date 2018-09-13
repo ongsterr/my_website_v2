@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors');
 require('dotenv').config();
 
 // Requiring in models (before routers)
@@ -11,10 +12,17 @@ const articleModel = require('./models/Article');
 // Requiring in routers
 const router = require('./routes');
 
-const isProduction = process.env.NODE_ENV === 'production';
-
 // Create global app object
 const app = express();
+
+// Setup CORS
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 // Adding middlewares
 app.use(express.json());
