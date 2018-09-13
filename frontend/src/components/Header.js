@@ -10,17 +10,17 @@ const LoggedOutView = ({ currentUser }) =>
         </Link>
       </li>
       <li className="">
-        <Link to="articles" className="">
+        <Link to="/articles" className="">
           Thoughts
         </Link>
       </li>
       <li className="">
-        <Link to="contact" className="">
+        <Link to="/contact" className="">
           Connect
         </Link>
       </li>
       <li className="">
-        <Link to="login" className="">
+        <Link to="/login" className="">
           Sign in
         </Link>
       </li>
@@ -36,17 +36,17 @@ const LoggedInView = ({ currentUser }) =>
         </Link>
       </li>
       <li className="">
-        <Link to="articles" className="">
+        <Link to="/articles" className="">
           Thoughts
         </Link>
       </li>
       <li className="">
-        <Link to="contact" className="">
+        <Link to="c/ontact" className="">
           Connect
         </Link>
       </li>
       <li className="">
-        <Link to="editor" className="">
+        <Link to="/editor" className="">
           <i className="" />
           &nbsp;New Post
         </Link>
