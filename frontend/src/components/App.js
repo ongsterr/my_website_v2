@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router';
 import PropTypes from 'prop-types';
 
+// Components
 import Header from 'components/Header';
 import Login from 'components/Login';
 import Editor from 'components/Editor';
 import Article from 'components/Article';
 import Articles from 'components/Articles';
+import Home from 'components/Home';
 
 import api from 'api';
+
+import '__css__/index.css';
 
 const mapStateToProps = ({ common }) => ({
   appName: common.appName,
@@ -50,6 +54,7 @@ class App extends Component {
         <Header appName={appName} currentUser={currentUser} />
 
         <Switch>
+          <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/editor" component={Editor} />
           <Route path="/editor/:slug" component={Editor} />
