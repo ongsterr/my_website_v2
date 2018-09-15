@@ -116,77 +116,64 @@ class Editor extends Component {
     } = this.props;
 
     const tagList = (this.props.tagList || []).map(tag => (
-      <span key={tag} className="tag-default tag-pill">
+      <span key={tag} className="ui label">
         <i className="ion-close-round" onClick={this.removeTagHandler(tag)} />
         {tag}
       </span>
     ));
 
     return (
-      <div className="editor-page">
-        <div className="container page">
-          <div className="row">
-            <div className="col-md-10 offset-md-1 col-xs-12">
-              <ListErrors errors={errors} />
-
-              <form>
-                <fieldset>
-                  <fieldset className="form-group">
-                    <input
-                      type="text"
-                      className="form-control form-control-lg"
-                      placeholder="Article Title"
-                      value={title}
-                      onChange={this.changeTitle}
-                    />
-                  </fieldset>
-
-                  <fieldset className="form-group">
-                    <input
-                      type="text"
-                      className="form-control form-control-lg"
-                      placeholder="What's this article about?"
-                      value={description}
-                      onChange={this.changeDescription}
-                    />
-                  </fieldset>
-
-                  <fieldset className="form-group">
-                    <textarea
-                      className="form-control form-control-lg"
-                      rows="10"
-                      placeholder="Write your article (in markdown)"
-                      value={body}
-                      onChange={this.changeBody}
-                    />
-                  </fieldset>
-
-                  <fieldset className="form-group">
-                    <input
-                      type="text"
-                      className="form-control form-control-lg"
-                      placeholder="Enter tags"
-                      value={tagInput}
-                      onChange={this.changeTagInput}
-                      onKeyUp={this.watchForEnter}
-                    />
-
-                    <div className="tag-list">{tagList}</div>
-                  </fieldset>
-
-                  <button
-                    className="btn btn-lg pull-xs-right btn-primary"
-                    type="button"
-                    disabled={inProgress}
-                    onClick={this.submitForm}>
-                    Publish Article
-                  </button>
-                </fieldset>
-              </form>
-            </div>
-          </div>
+      <form className="ui form error">
+        <ListErrors errors={errors} />
+        <div className="field">
+          <label>Article Title</label>
+          <input
+            type="text"
+            placeholder="Article Title"
+            value={title}
+            onChange={this.changeTitle}
+          />
         </div>
-      </div>
+
+        <div className="field">
+          <label>Article Description</label>
+          <input
+            type="text"
+            placeholder="What's this article about?"
+            value={description}
+            onChange={this.changeDescription}
+          />
+        </div>
+
+        <div className="field">
+          <textarea
+            rows="20"
+            placeholder="Write your article (in markdown)"
+            value={body}
+            onChange={this.changeBody}
+          />
+        </div>
+
+        <div className="field">
+          <label>Tags</label>
+          <input
+            type="text"
+            placeholder="Enter tags"
+            value={tagInput}
+            onChange={this.changeTagInput}
+            onKeyUp={this.watchForEnter}
+          />
+        </div>
+        <p>{tagList}</p>
+
+        <button
+          className="ui submit button"
+          type="button"
+          disabled={inProgress}
+          onClick={this.submitForm}>
+          Publish Article
+        </button>
+      </form>
     );
   }
 }
