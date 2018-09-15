@@ -2,13 +2,13 @@ import React from 'react';
 
 const ListErrors = ({ errors }) =>
   errors ? (
-    <ul className="error-messages">
+    <div className="ui error message">
       {Object.keys(errors).map(key => (
-        <li key={key}>
+        <div key={key}>
           {key} {errors[key]}
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   ) : null;
 
 export default ListErrors;
