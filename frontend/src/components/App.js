@@ -14,6 +14,7 @@ import Home from 'components/Home';
 import api from 'api';
 
 import '__css__/index.css';
+import '__css__/semantic/dist/semantic.css';
 
 const mapStateToProps = ({ common }) => ({
   appName: common.appName,
@@ -50,17 +51,18 @@ class App extends Component {
   render() {
     const { appName, appLoaded, currentUser } = this.props;
     return appLoaded ? (
-      <div>
+      <div className="ui container">
         <Header appName={appName} currentUser={currentUser} />
-
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/editor" component={Editor} />
-          <Route path="/editor/:slug" component={Editor} />
-          <Route exact path="/articles" component={Articles} />
-          <Route path="/article/:id" component={Article} />
-        </Switch>
+        <div className="ui basic segment">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/editor" component={Editor} />
+            <Route path="/editor/:slug" component={Editor} />
+            <Route exact path="/articles" component={Articles} />
+            <Route path="/article/:id" component={Article} />
+          </Switch>
+        </div>
       </div>
     ) : (
       <div>

@@ -9,7 +9,7 @@ export default class Home extends Component {
     rowHeight: 30,
     onLayoutChange: function() {},
     cols: { lg: 12, md: 9, sm: 6, xs: 3, xxs: 2 },
-    block: { lg: 8, md: 6, sm: 3, xs: 2, xxs: 2 },
+    block: { lg: 6, md: 4, sm: 2, xs: 2, xxs: 2 },
   };
 
   state = {

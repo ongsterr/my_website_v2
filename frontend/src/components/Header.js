@@ -3,67 +3,42 @@ import { Link } from 'react-router-dom';
 
 const LoggedOutView = ({ currentUser }) =>
   !currentUser ? (
-    <ul className="">
-      <li className="">
-        <Link to="/" className="">
-          Home
-        </Link>
-      </li>
-      <li className="">
-        <Link to="/articles" className="">
-          Thoughts
-        </Link>
-      </li>
-      <li className="">
-        <Link to="/contact" className="">
-          Connect
-        </Link>
-      </li>
-      <li className="">
-        <Link to="/login" className="">
-          Sign in
-        </Link>
-      </li>
-    </ul>
+    <div className="right menu">
+      <Link to="/articles" className="ui item">
+        Thoughts
+      </Link>
+      <Link to="/contact" className="ui item">
+        Connect
+      </Link>
+      <Link to="/login" className="ui item">
+        Sign in
+      </Link>
+    </div>
   ) : null;
 
 const LoggedInView = ({ currentUser }) =>
   currentUser ? (
-    <ul className="">
-      <li className="">
-        <Link to="/" className="">
-          Home
-        </Link>
-      </li>
-      <li className="">
-        <Link to="/articles" className="">
-          Thoughts
-        </Link>
-      </li>
-      <li className="">
-        <Link to="c/ontact" className="">
-          Connect
-        </Link>
-      </li>
-      <li className="">
-        <Link to="/editor" className="">
-          <i className="" />
-          &nbsp;New Post
-        </Link>
-      </li>
-    </ul>
+    <div className="right menu">
+      <Link to="/articles" className="ui item">
+        Thoughts
+      </Link>
+      <Link to="/contact" className="ui item">
+        Connect
+      </Link>
+      <Link to="/editor" className="ui item">
+        New Post
+      </Link>
+    </div>
   ) : null;
 
 const Header = ({ appName, currentUser }) => (
-  <nav className="">
-    <div className="">
-      <Link to="/" className="">
-        {appName}
-      </Link>
+  <nav className="ui large secondary menu">
+    <Link to="/" className="item">
+      {appName}
+    </Link>
 
-      <LoggedOutView currentUser={currentUser} />
-      <LoggedInView currentUser={currentUser} />
-    </div>
+    <LoggedOutView currentUser={currentUser} />
+    <LoggedInView currentUser={currentUser} />
   </nav>
 );
 
