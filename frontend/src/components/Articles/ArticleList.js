@@ -17,7 +17,7 @@ const ArticleList = ({ articles, articlesCount, currentPage, onSetPage }) => {
 
   return (
     <div>
-      {articlesFeed}
+      <div className="ui divided relaxed items">{articlesFeed}</div>
       <ListPagination
         articlesCount={articlesCount}
         currentPage={currentPage}

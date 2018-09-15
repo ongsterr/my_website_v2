@@ -19,25 +19,20 @@ const GlobalFeedTab = ({ onTabClick, tab }) => {
   };
 
   return (
-    <li className="nav-item">
-      <a
-        href=""
-        className={tab === 'all' ? 'nav-link active' : 'nav-link'}
-        onClick={clickHandler}>
-        Global Feed
-      </a>
-    </li>
+    <div
+      className={tab === 'all' ? 'item active' : 'item'}
+      onClick={clickHandler}>
+      All Posts
+    </div>
   );
 };
 
 const TagFilterTab = ({ tag }) =>
   tag ? (
-    <li className="nav-item">
-      <a href="" className="nav-link active">
-        <i className="ion-pound" />
-        {tag}
-      </a>
-    </li>
+    <div className="item active">
+      <i className="ion-pound" />
+      {tag}
+    </div>
   ) : null;
 
 const MainView = ({
@@ -51,19 +46,25 @@ const MainView = ({
 }) => {
   const onSetPageHandler = page => onSetPage(page);
   return (
-    <div className="col-md-9">
-      <div className="feed-toggle">
-        <ul className="nav nav-pills outline-active">
-          <GlobalFeedTab tab={tab} onTabClick={onTabClick} />
-          <TagFilterTab tag={tag} />
-        </ul>
+    <div className="">
+      <div className="ui pointing secondary menu">
+        <GlobalFeedTab tab={tab} onTabClick={onTabClick} />
+        <TagFilterTab tag={tag} />
       </div>
-      <ArticleList
-        articles={articles}
-        articlesCount={articlesCount}
-        currentPage={currentPage}
-        onSetPage={onSetPageHandler}
-      />
+      <div
+        className={
+          articles
+            ? 'ui bottom attached active tab segment'
+            : 'ui bottom attached active tab segment loading'
+        }
+        style={{ border: 'none' }}>
+        <ArticleList
+          articles={articles}
+          articlesCount={articlesCount}
+          currentPage={currentPage}
+          onSetPage={onSetPageHandler}
+        />
+      </div>
     </div>
   );
 };

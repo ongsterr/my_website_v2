@@ -4,28 +4,32 @@ import { Link } from 'react-router-dom';
 const ArticlePreview = ({ article }) => {
   const tags = article.tagList.map(tag => {
     return (
-      <li className="" key={tag}>
+      <a className="ui label" key={tag}>
         {tag}
-      </li>
+      </a>
     );
   });
 
   return (
-    <div className="">
-      <div className="">
-        <div className="info">
+    <div className="item">
+      <div className="content">
+        <Link to={`article/${article.slug}`} className="header">
+          {article.title}
+        </Link>
+        <div className="meta">
           <span className="date">
             {new Date(article.createdAt).toDateString()}
           </span>
         </div>
+        <div className="description">
+          <p>{article.description}</p>
+        </div>
+        <div />
+        <div className="extra">Read more...</div>
+        <div className="extra">
+          <div className="ui right floated">{tags}</div>
+        </div>
       </div>
-
-      <Link to={`article/${article.slug}`} className="preview-link">
-        <h1>{article.title}</h1>
-        <p>{article.description}</p>
-        <span>Read more...</span>
-        <ul className="tag-list">{tags}</ul>
-      </Link>
     </div>
   );
 };

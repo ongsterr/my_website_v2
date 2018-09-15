@@ -30,17 +30,13 @@ class Articles extends Component {
   render() {
     const { tags, onClickTag } = this.props;
     return (
-      <div className="home-page">
-        <div className="container page">
-          <div className="row">
-            <MainView />
-            <div className="col-md-3">
-              <div className="sidebar">
-                <p>Popular Tags</p>
-                <Tags tags={tags} onClickTag={onClickTag} />
-              </div>
-            </div>
-          </div>
+      <div className="ui stackable grid">
+        <div className="thirteen wide column">
+          <MainView />
+        </div>
+        <div className="three wide column">
+          <p>Popular Tags</p>
+          <Tags tags={tags} onClickTag={onClickTag} />
         </div>
       </div>
     );

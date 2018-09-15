@@ -3,18 +3,14 @@ import api from 'api';
 
 const Tags = ({ tags, onClickTag }) =>
   tags ? (
-    <div className="tag-list">
+    <div className="">
       {tags.map(tag => {
         const handleClick = ev => {
           ev.preventDefault();
           onClickTag(tag, api.Articles.byTag(tag));
         };
         return (
-          <a
-            href=""
-            className="tag-default tag-pill"
-            key={tag}
-            onClick={handleClick}>
+          <a className="ui label" key={tag} onClick={handleClick}>
             {tag}
           </a>
         );
