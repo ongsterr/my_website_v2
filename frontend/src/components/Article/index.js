@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import marked from 'marked';
 
-import ArticleMeta from './ArticleMeta';
+import ArticleActions from './ArticleActions';
 import api from 'api';
 
 const mapStateToProps = state => ({
@@ -35,28 +35,29 @@ class Article extends Component {
     const canModify = currentUser && currentUser.username;
 
     const tags = article.tagList.map(tag => (
-      <li className="" key={tag}>
+      <div className="ui label" key={tag}>
         {tag}
-      </li>
+      </div>
     ));
 
     return (
-      <div className="">
-        <div className="">
-          <div className="">
-            <h1>{article.title}</h1>
-            <ArticleMeta article={article} canModify={canModify} />
-          </div>
-        </div>
-
-        <div className="">
-          <div className="">
-            <div className="">
-              <div dangerouslySetInnerHTML={markup} />
-              <ul className="">{tags}</ul>
+      <div className="ui basic segment">
+        <h1 className="ui header">{article.title}</h1>
+        <p className="ui grid">
+          <div className="three column row">
+            <div className="left floated column">
+              {new Date(article.createdAt).toDateString()}
+            </div>
+            <div className="right floated right aligned column">
+              <ArticleActions canModify={canModify} article={article} />
             </div>
           </div>
+        </p>
+        <div className="ui basic segment">
+          <div dangerouslySetInnerHTML={markup} />
         </div>
+        <div className="ui horizontal divider">End of Post</div>
+        <div>{tags}</div>
       </div>
     );
   }
