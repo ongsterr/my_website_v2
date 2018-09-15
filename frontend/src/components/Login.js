@@ -37,49 +37,36 @@ class Login extends Component {
   render() {
     const { email, password, errors, inProgress } = this.props;
     return (
-      <div className="auth-page">
-        <div className="container page">
-          <div className="row">
-            <div className="col-md-6 offset-md-3 col-xs-12">
-              <h1 className="text-xs center">Sign In</h1>
-              <p className="text-xs-center">
-                <a>Need an account?</a>
-              </p>
-
-              <ListErrors errors={errors} />
-
-              <form onSubmit={this.submitForm(email, password)}>
-                <fieldset>
-                  <fieldset className="form-group">
-                    <input
-                      className="form-control form-control-lg"
-                      type="email"
-                      placeholder="email"
-                      value={email}
-                      onChange={this.changeEmail}
-                    />
-                  </fieldset>
-                  <fieldset className="form-group">
-                    <input
-                      className="form-control form-control-lg"
-                      type="password"
-                      placeholder="password"
-                      value={password}
-                      onChange={this.changePassword}
-                    />
-                  </fieldset>
-                  <button
-                    className="btn btn-lg btn-primary pull-xs-right"
-                    type="submit"
-                    disabled={inProgress}>
-                    Sign In
-                  </button>
-                </fieldset>
-              </form>
-            </div>
-          </div>
+      <form
+        onSubmit={this.submitForm(email, password)}
+        className="ui form error">
+        <ListErrors errors={errors} />
+        <h3 className="ui header">Welcome back, Master Chris!</h3>
+        <div className="field">
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="email"
+            value={email}
+            onChange={this.changeEmail}
+          />
         </div>
-      </div>
+        <div className="field">
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={this.changePassword}
+          />
+        </div>
+        <button
+          className="ui submit button"
+          type="submit"
+          disabled={inProgress}>
+          Sign In
+        </button>
+      </form>
     );
   }
 }
