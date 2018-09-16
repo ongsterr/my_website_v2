@@ -21,6 +21,8 @@
  *       - Debug children
  *
  */
+ /*Importing Semantic UI into css file*/
+ @import "./semantic/dist/semantic.css";
 /* External Library Includes */
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 /* Document
@@ -1356,6 +1358,7 @@
  .pv2 { padding-top: .5rem; padding-bottom: .5rem; }
  .pv3 { padding-top: 1rem; padding-bottom: 1rem; }
  .pv4 { padding-top: 2rem; padding-bottom: 2rem; }
+ .pv4-5 { padding-top: 3rem; padding-bottom: 3rem; }
  .pv5 { padding-top: 4rem; padding-bottom: 4rem; }
  .pv6 { padding-top: 8rem; padding-bottom: 8rem; }
  .pv7 { padding-top: 16rem; padding-bottom: 16rem; }
@@ -1364,6 +1367,7 @@
  .ph2 { padding-left: .5rem; padding-right: .5rem; }
  .ph3 { padding-left: 1rem; padding-right: 1rem; }
  .ph4 { padding-left: 2rem; padding-right: 2rem; }
+ .ph4-5 { padding-left: 3rem; padding-right: 3rem; }
  .ph5 { padding-left: 4rem; padding-right: 4rem; }
  .ph6 { padding-left: 8rem; padding-right: 8rem; }
  .ph7 { padding-left: 16rem; padding-right: 16rem; }

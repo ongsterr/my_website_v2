@@ -58,17 +58,23 @@ const Tags = {
   getAll: () => requests.get('/tags'),
 };
 
+const Profile = {
+  get: username => requests.get(`/profile/${username}`),
+};
+
 const Auth = {
   login: (email, password) =>
     requests.post('/users/login', { user: { email, password } }),
   current: () => requests.get('/users'),
   register: (username, email, password) =>
     requests.post('/users', { user: { username, email, password } }),
+  save: user => requests.put('/users/update', { user }),
 };
 
 export default {
   Articles,
   Tags,
   Auth,
+  Profile,
   setToken,
 };
