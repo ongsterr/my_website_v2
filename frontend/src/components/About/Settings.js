@@ -4,20 +4,19 @@ import { connect } from 'react-redux';
 import api from 'api';
 import ListErrors from 'components/ListErrors';
 
-const mapStateToProps = state => {
-  return {
-    ...state.settings,
-    currentUser: state.common.currentUser,
-  };
-};
+const mapStateToProps = state => ({
+  ...state.settings,
+  currentUser: state.common.currentUser,
+  profile: state.profile,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onClickLogout: () => dispatch({ type: 'LOGOUT' }),
-    onSubmitForm: user =>
-      dispatch({ type: 'SETTINGS_SAVED', payload: api.Auth.save(user) }),
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  onLoad: payload => dispatch({ type: 'PROFILE_PAGE_LOADED', payload }),
+  onUnload: () => dispatch({ type: 'PROFILE_PAGE_UNLOADED' }),
+  onClickLogout: () => dispatch({ type: 'LOGOUT' }),
+  onSubmitForm: user =>
+    dispatch({ type: 'SETTINGS_SAVED', payload: api.Auth.save(user) }),
+});
 
 class SettingsForm extends Component {
   state = {
@@ -28,14 +27,15 @@ class SettingsForm extends Component {
     password: '',
   };
 
-  componentDidMount() {
-    const { currentUser } = this.props;
-    if (currentUser) {
+  componentWillMount() {
+    const { profile } = this.props;
+
+    if (profile) {
       const currentState = Object.assign(this.state, {
-        image: currentUser.image || '',
-        username: currentUser.username,
-        bio: currentUser.bio || '',
-        email: currentUser.email,
+        image: profile.image || '',
+        username: profile.username,
+        bio: profile.bio || '',
+        email: profile.email,
       });
       this.setState(currentState);
     }
@@ -138,19 +138,52 @@ class SettingsForm extends Component {
   }
 }
 
-const Settings = ({ error, currentUser, onSubmitForm, onClickLogout }) => (
-  <div className="">
-    <h2 className="ui dividing header">My Settings</h2>
-    <ListErrors errors={error} />
-    <SettingsForm currentUser={currentUser} onSubmitForm={onSubmitForm} />
+class Settings extends Component {
+  componentWillMount() {
+    const { onLoad, currentUser } = this.props;
+    onLoad(Promise.all([api.Profile.get(currentUser.username)]));
+  }
 
-    <div className="ui horizontal divider">Or</div>
+  componentWillUnmount() {
+    this.props.onUnload();
+  }
 
-    <button className="ui negative basic button" onClick={onClickLogout}>
-      Click here to logout.
-    </button>
-  </div>
-);
+  render() {
+    const {
+      error,
+      profile,
+      currentUser,
+      onSubmitForm,
+      onClickLogout,
+      onLoad,
+      onUnload,
+    } = this.props;
+
+    if (!profile.username) {
+      return <div>Loading...</div>;
+    }
+
+    return (
+      <div className="">
+        <h2 className="ui dividing header">My Settings</h2>
+        <ListErrors errors={error} />
+        <SettingsForm
+          currentUser={currentUser}
+          onSubmitForm={onSubmitForm}
+          onLoad={onLoad}
+          onUnload={onUnload}
+          profile={profile}
+        />
+
+        <div className="ui horizontal divider">Or</div>
+
+        <button className="ui negative basic button" onClick={onClickLogout}>
+          Click here to logout.
+        </button>
+      </div>
+    );
+  }
+}
 
 export default connect(
   mapStateToProps,

@@ -53,7 +53,9 @@ const EditProfileSettings = ({ isUser }) =>
 
 class About extends Component {
   componentWillMount() {
-    this.props.onLoad(Promise.all([api.Profile.get('chrisongg')]));
+    this.props.onLoad(
+      Promise.all([api.Profile.get(this.props.currentUser.username)])
+    );
   }
 
   componentWillUnmount() {
@@ -70,7 +72,11 @@ class About extends Component {
       <div>
         <div className="mb5">
           <h1 className="ui header">
-            <div className="mb3">I'm Chris. Your problem solver.</div>
+            <div className="mb3">
+              <span>I'm Chris.</span>
+              <br />
+              <span>Your problem solver.</span>
+            </div>
           </h1>
           <div className="ui grid">
             <div className="ui two column row">
