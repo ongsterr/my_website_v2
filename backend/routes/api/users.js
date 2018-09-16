@@ -65,4 +65,35 @@ router.get('/', auth.required, (req, res, next) => {
     .catch(next);
 });
 
+router.put('/update', auth.required, (req, res, next) => {
+  User.findById(req.payload.id)
+    .then(user => {
+      if (!user) {
+        return res.status(401);
+      }
+
+      // Only update fields that were actually passed...
+      if (typeof req.body.user.username !== undefined) {
+        user.username = req.body.user.username;
+      }
+      if (typeof req.body.user.email !== undefined) {
+        user.email = req.body.user.email;
+      }
+      if (typeof req.body.user.bio !== undefined) {
+        user.bio = req.body.user.bio;
+      }
+      if (typeof req.body.user.image !== undefined) {
+        user.image = req.body.user.image;
+      }
+      if (typeof req.body.user.password !== undefined) {
+        user.password = req.body.user.password;
+      }
+
+      return user.save().then(() => {
+        return res.json({ user: user.toAuthJSON() });
+      });
+    })
+    .catch(next);
+});
+
 module.exports = router;
