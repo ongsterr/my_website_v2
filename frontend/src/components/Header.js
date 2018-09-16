@@ -7,8 +7,8 @@ const LoggedOutView = ({ currentUser }) =>
       <Link to="/articles" className="ui item">
         Thoughts
       </Link>
-      <Link to="/contact" className="ui item">
-        Connect
+      <Link to="/about" className="ui item">
+        About
       </Link>
       <Link to="/login" className="ui item">
         Sign in
@@ -22,8 +22,8 @@ const LoggedInView = ({ currentUser }) =>
       <Link to="/articles" className="ui item">
         Thoughts
       </Link>
-      <Link to="/contact" className="ui item">
-        Connect
+      <Link to="/about" className="ui item">
+        About
       </Link>
       <Link to="/editor" className="ui item">
         New Post

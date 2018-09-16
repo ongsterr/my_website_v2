@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 // Components
 import Header from 'components/Header';
 import Login from 'components/Login';
+import About from 'components/About';
+import Settings from 'components/About/Settings';
 import Editor from 'components/Editor';
 import Article from 'components/Article';
 import Articles from 'components/Articles';
@@ -14,7 +16,6 @@ import Home from 'components/Home';
 import api from 'api';
 
 import '__css__/index.css';
-import '__css__/semantic/dist/semantic.css';
 
 const mapStateToProps = ({ common }) => ({
   appName: common.appName,
@@ -57,6 +58,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/about/edit" component={Settings} />
             <Route exact path="/editor" component={Editor} />
             <Route path="/editor/:slug" component={Editor} />
             <Route exact path="/articles" component={Articles} />
