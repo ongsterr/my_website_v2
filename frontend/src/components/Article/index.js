@@ -43,7 +43,7 @@ class Article extends Component {
     return (
       <div className="ui basic segment">
         <h1 className="ui header">{article.title}</h1>
-        <p className="ui grid">
+        <div className="ui grid">
           <div className="three column row">
             <div className="left floated column">
               {new Date(article.createdAt).toDateString()}
@@ -52,7 +52,7 @@ class Article extends Component {
               <ArticleActions canModify={canModify} article={article} />
             </div>
           </div>
-        </p>
+        </div>
         <div className="ui basic segment">
           <div dangerouslySetInnerHTML={markup} />
         </div>
