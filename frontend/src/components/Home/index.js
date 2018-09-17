@@ -92,7 +92,7 @@ export default class Home extends Component {
           }}
           className="link dt hide-child br2 w-100 h-100 cover bg-center">
           {i === 0 ? (
-            <div class="w-100 h-100 child bg-black-10">
+            <div className="w-100 h-100 child bg-black-10">
               <div className="flex flex-column justify-between w-100 h-100">
                 <div className="row f1 fw9 h4 pt4 ph3">
                   <div>MY NAME IS </div>
