@@ -29,15 +29,23 @@ const workProgression = () => (
   </div>
 );
 
-const quoteBlocks = () => (
-  <div className="pv4-5 ph4-5 w5 br-100 tc bg-black">
-    <h3 className="ui header">
-      <div className="white">If you're going to</div>
-      <div className="white">have a story,</div>
-      <div className="white">have a big story,</div>
-      <div className="white">or none at all.</div>
-    </h3>
-    <div className="sub header white">- J. Campbell</div>
+const quoteBlocks = (
+  <div
+    style={{
+      backgroundImage: `url(
+              https://s3-ap-southeast-2.amazonaws.com/personalwebsiteforchris/Pictures/chris.png
+            )`,
+    }}
+    className="link dt hide-child br-100 w5 h-100 cover bg-center">
+    <div className="pv4-5 ph4-5 br-100 tc w-100 h-100 child bg-black-20">
+      <h3 className="ui header">
+        <div className="white">If you're going to</div>
+        <div className="white">have a story,</div>
+        <div className="white">have a big story,</div>
+        <div className="white">or none at all.</div>
+      </h3>
+      <div className="sub header white">- J. Campbell</div>
+    </div>
   </div>
 );
 
@@ -45,7 +53,7 @@ const EditProfileSettings = ({ isUser }) =>
   isUser ? (
     <button className="ui primary basic small button">
       <Link to="/about/edit">
-        <i className="edit outline icon" />
+        <i className="edit icon" />
         Edit Profile Settings
       </Link>
     </button>
@@ -68,7 +76,7 @@ class About extends Component {
 
     return (
       <div>
-        <div className="mb5">
+        <div className="mb3">
           <h1 className="ui header">
             <div className="mb3">
               <span>I'm Chris.</span>
@@ -86,8 +94,8 @@ class About extends Component {
           </div>
         </div>
 
-        <div className="flex">
-          <div className="mr4 mb4">{quoteBlocks()}</div>
+        <div className="flex flex-column">
+          <div className="mr4 mb4 self-center">{quoteBlocks}</div>
           <div>
             <div dangerouslySetInnerHTML={markup} />
             {noBio}

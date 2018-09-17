@@ -44,7 +44,7 @@ class Article extends Component {
       <div className="ui basic segment">
         <h1 className="ui header">{article.title}</h1>
         <div className="ui grid">
-          <div className="three column row">
+          <div className="two column row">
             <div className="left floated column">
               {new Date(article.createdAt).toDateString()}
             </div>

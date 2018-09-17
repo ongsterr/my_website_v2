@@ -310,6 +310,7 @@
     Modifiers:
     --color-name = each color variable name is also a border color name
  */
+ .b--mycolor {border-color: rgba(252, 74, 26, 0.1)}
  .b--black { border-color: #000; }
  .b--near-black { border-color: #111; }
  .b--dark-gray { border-color: #333; }
@@ -1000,6 +1001,7 @@
  .washed-yellow { color: #fffceb; }
  .washed-red { color: #ffdfdf; }
  .color-inherit { color: inherit; }
+ .bg-mycolor-10 { background-color: rgba(252, 74, 26, 0.1); }
  .bg-black-90 { background-color: rgba( 0, 0, 0, .9 ); }
  .bg-black-80 { background-color: rgba( 0, 0, 0, .8 ); }
  .bg-black-70 { background-color: rgba( 0, 0, 0, .7 ); }

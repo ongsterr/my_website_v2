@@ -6,10 +6,17 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 export default class Home extends Component {
   static defaultProps = {
     className: 'layout',
-    rowHeight: 30,
+    rowHeight: 32,
     onLayoutChange: function() {},
     cols: { lg: 12, md: 9, sm: 6, xs: 3, xxs: 2 },
     block: { lg: 6, md: 4, sm: 2, xs: 2, xxs: 2 },
+    pics: {
+      lg: [1, 2, 3, 4, 5, 6],
+      md: [1, 2, 4, 5],
+      sm: [1, 4],
+      xs: [1, 4],
+      xxs: [1, 4],
+    },
   };
 
   state = {
@@ -26,14 +33,14 @@ export default class Home extends Component {
 
   updateWindowSize = () => {
     switch (true) {
-      case window.innerWidth > 996:
+      case window.innerWidth > 1200:
         this.setState({
           currentWindowSize: 'lg',
           layouts: { lg: this.generateLayout('lg') },
           mounted: true,
         });
         break;
-      case window.innerWidth > 768:
+      case window.innerWidth > 868:
         this.setState({
           currentWindowSize: 'md',
           layouts: { md: this.generateLayout('md') },
@@ -57,22 +64,57 @@ export default class Home extends Component {
     }
   };
 
-  generateLayout = currentWindowSize =>
-    Array(this.props.block[currentWindowSize])
+  generateLayout = currentWindowSize => {
+    const { block, cols } = this.props;
+    return Array(block[currentWindowSize])
       .fill(1)
       .map((item, i) => ({
-        x: (i * 3) % this.props.cols[currentWindowSize],
-        y: Math.round((i * 3) / 12),
+        x: (i * 3) % (cols[currentWindowSize] - 3),
+        y: Math.round((i * 3) / (cols[currentWindowSize] - 3)),
         w: 3,
         h: 8,
         i: i.toString(),
       }));
+  };
 
   generateDOM = () => {
     const { layouts, currentWindowSize } = this.state;
+    const { pics } = this.props;
     return layouts[currentWindowSize].map((l, i) => (
-      <div key={i} style={{ border: '1px solid black' }}>
-        <span>{i}</span>
+      <div key={i}>
+        <div
+          style={{
+            backgroundImage: `url(
+              https://s3-ap-southeast-2.amazonaws.com/personalwebsiteforchris/Pictures/piece${
+                pics[currentWindowSize][i]
+              }.png
+            )`,
+          }}
+          className="link dt hide-child br2 w-100 h-100 cover bg-center">
+          {i === 0 ? (
+            <div class="w-100 h-100 child bg-black-10">
+              <div className="flex flex-column justify-between w-100 h-100">
+                <div className="row f1 fw9 h4 pt4 ph3">
+                  <div>MY NAME IS </div>
+                  &nbsp;
+                  <div>
+                    <span style={{ color: 'rgba(252, 74, 26, 0.8)' }}>
+                      CHRIS{' '}
+                    </span>
+                    ONG.
+                  </div>
+                </div>
+                <div className="row f1 fw9 h4 pt4 ph3">
+                  <div>FULL-STACK</div>
+                  &nbsp;
+                  <div style={{ color: 'rgba(252, 74, 26, 0.8)' }}>
+                    DEVELOPER
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : null}
+        </div>
       </div>
     ));
   };

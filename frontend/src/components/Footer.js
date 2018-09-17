@@ -7,7 +7,7 @@ import FacebookIcon from 'assets/icons/FacebookIcon';
 
 const Footer = () => {
   return (
-    <footer className="flex flex-column bt h4">
+    <footer className="flex flex-column bt b--mycolor bg-mycolor-10 h4">
       <div className="flex justify-center pt4">
         <a href="https://www.linkedin.com/in/chrisongg/" target="_blank">
           <LinkedinIcon />

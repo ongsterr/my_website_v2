@@ -56,7 +56,7 @@ class App extends Component {
       <section className="flex flex-column min-vh-100">
         <div className="ui container" style={{ flex: 1 }}>
           <Header appName={appName} currentUser={currentUser} />
-          <div className="ui basic segment">
+          <div className="ui basic segment" style={{ marginTop: 0 }}>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
