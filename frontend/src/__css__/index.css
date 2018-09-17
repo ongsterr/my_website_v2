@@ -735,6 +735,7 @@
  .h4 { height: 8rem; }
  .h5 { height: 16rem; }
  /* Height Percentages - Based off of height of parent */
+ .h-10 { height: 10%; }
  .h-25 { height: 25%; }
  .h-50 { height: 50%; }
  .h-75 { height: 75%; }

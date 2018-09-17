@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 // Components
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 import Login from 'components/Login';
 import About from 'components/About';
 import Settings from 'components/About/Settings';
@@ -52,21 +53,24 @@ class App extends Component {
   render() {
     const { appName, appLoaded, currentUser } = this.props;
     return appLoaded ? (
-      <div className="ui container">
-        <Header appName={appName} currentUser={currentUser} />
-        <div className="ui basic segment">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/about/edit" component={Settings} />
-            <Route exact path="/editor" component={Editor} />
-            <Route path="/editor/:slug" component={Editor} />
-            <Route exact path="/articles" component={Articles} />
-            <Route path="/article/:id" component={Article} />
-          </Switch>
+      <section className="flex flex-column min-vh-100">
+        <div className="ui container" style={{ flex: 1 }}>
+          <Header appName={appName} currentUser={currentUser} />
+          <div className="ui basic segment">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/about/edit" component={Settings} />
+              <Route exact path="/editor" component={Editor} />
+              <Route path="/editor/:slug" component={Editor} />
+              <Route exact path="/articles" component={Articles} />
+              <Route path="/article/:id" component={Article} />
+            </Switch>
+          </div>
         </div>
-      </div>
+        <Footer />
+      </section>
     ) : (
       <div>
         <Header appName={appName} currentUser={currentUser} />

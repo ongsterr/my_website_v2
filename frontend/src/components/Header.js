@@ -7,7 +7,7 @@ const LoggedOutView = ({ currentUser }) =>
       <Link to="/articles" className="ui item">
         Thoughts
       </Link>
-      <Link to="/about" className="ui item">
+      <Link to="/about" className="item">
         About
       </Link>
       <Link to="/login" className="ui item">
@@ -22,7 +22,7 @@ const LoggedInView = ({ currentUser }) =>
       <Link to="/articles" className="ui item">
         Thoughts
       </Link>
-      <Link to="/about" className="ui item">
+      <Link to="/about" className="item">
         About
       </Link>
       <Link to="/editor" className="ui item">
