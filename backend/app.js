@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const cors = require('cors');
+const logger = require('morgan');
 require('dotenv').config();
 
 // Requiring in models (before routers)
@@ -25,6 +26,7 @@ app.use(cors(corsOptions));
 const isProduction = process.env.NODE_ENV === 'production';
 
 // Adding middlewares
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -42,7 +44,7 @@ if (isProduction) {
 } else {
   mongoose
     .connect(
-      'mongodb://localhost/chrisongg',
+      process.env.MONGODB_TEST_URI,
       options
     )
     .then(() => console.log('Mongodb connection established :)'))
