@@ -1,0 +1,33 @@
+version: '3'
+services:
+  # Setup node container
+  server:
+    build: ./backend
+    expose:
+      - ${APP_SERVER_PORT}
+    environment:
+      API_HOST: ${API_HOST}
+      APP_SERVER_PORT: ${APP_SERVER_PORT}
+      MONGODB_URI: ${MONGODB_URI}
+      MONGODB_TEST_URI: ${MONGODB_TEST_URI}
+    ports:
+      - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+    volumes:
+      - ./backend/src:/srv/app/website-server
+    command: npm start
+
+  # Setup react container
+  client:
+    build: ./frontend
+    environment:
+      - REACT_APP_PORT=${REACT_APP_PORT}
+    expose:
+      - ${REACT_APP_PORT}
+    ports:
+      - ${REACT_APP_PORT}:${REACT_APP_PORT}
+    volumes:
+      - ./client/src:/srv/app/website-client/src
+      - ./client/public:/srv/app/website-client/public
+    links:
+      - server
+    command: npm start
