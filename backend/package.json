@@ -1,36 +1,36 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Backend server for my personal website",
-  "main": "app.js",
-  "scripts": {
-    "start": "nodemon app.js",
-    "test": "jest --verbose"
-  },
-  "keywords": [
-    "backend"
-  ],
-  "author": "chrisongg",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "express-jwt": "^5.3.1",
-    "helmet": "^3.13.0",
-    "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.2.14",
-    "mongoose-unique-validator": "^2.0.1",
-    "morgan": "^1.9.1",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "permit": "^0.2.4",
-    "slug": "^0.9.1"
-  },
-  "devDependencies": {
-    "axios": "^0.18.0",
-    "dotenv": "^6.0.0",
-    "jest": "^23.6.0",
-    "nodemon": "^1.18.4"
-  }
+	"name": "backend",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Backend server for my personal website",
+	"main": "src/app.js",
+	"scripts": {
+		"start": "nodemon src/app.js",
+		"test": "jest --verbose"
+	},
+	"keywords": [
+		"backend"
+	],
+	"author": "chrisongg",
+	"license": "ISC",
+	"dependencies": {
+		"cors": "^2.8.4",
+		"express": "^4.16.3",
+		"express-jwt": "^5.3.1",
+		"helmet": "^3.13.0",
+		"jsonwebtoken": "^8.3.0",
+		"mongoose": "^5.2.14",
+		"mongoose-unique-validator": "^2.0.1",
+		"morgan": "^1.9.1",
+		"passport": "^0.4.0",
+		"passport-local": "^1.0.0",
+		"permit": "^0.2.4",
+		"slug": "^0.9.1"
+	},
+	"devDependencies": {
+		"axios": "^0.18.0",
+		"dotenv": "^6.0.0",
+		"jest": "^23.6.0",
+		"nodemon": "^1.18.4"
+	}
 }

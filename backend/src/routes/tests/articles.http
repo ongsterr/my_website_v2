@@ -1,0 +1,37 @@
+### Post articles
+POST http://localhost:3001/api/articles
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViOTc2NjNiMmM4MzdlMjVjMTMyNmNmMyIsInVzZXJuYW1lIjoiY2hyaXNvbmdnIiwiZXhwIjoxNTQxODMzMTI1LCJpYXQiOjE1MzY2NTI3MjV9.Xp_uMp_Q-xZwunY9OOJpi8X-fAsk94Ka4db0DU2GsfE
+
+{
+  "article": {
+    "title": "The Concept of CSS",
+    "description": "A comprehensive guide to using CSS to build servers",
+    "body": "A comprehensive guide to using CSS to build servers",
+    "tagList": ["CSS"],
+  }
+}
+
+### Retrieve articles
+GET http://localhost:3001/api/articles?limit=10
+
+### Retrieve article
+GET http://localhost:3001/api/articles/the-concept-of-css-wixatq
+
+### Update article
+PUT http://localhost:3001/api/articles/the-concept-of-css-wixatq
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViOTc2NjNiMmM4MzdlMjVjMTMyNmNmMyIsInVzZXJuYW1lIjoiY2hyaXNvbmdnIiwiZXhwIjoxNTQyMDA1ODE3LCJpYXQiOjE1MzY4MjU0MTd9.Mt6_HfMN443bSAMAX4S4-Xs6i2iLmi_srrG-mivATqA
+
+{
+  "article": {
+    "title": "The Concept of CSS",
+    "description": "A comprehensive guide to using CSS to build servers",
+    "body": "A comprehensive guide to using CSS to build servers. I changed something here.",
+    "tagList": ["CSS"],
+  }
+}
+
+### Delete article
+DELETE http://localhost:3001/api/articles/the-concept-of-css-atlu9z
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViOTc2NjNiMmM4MzdlMjVjMTMyNmNmMyIsInVzZXJuYW1lIjoiY2hyaXNvbmdnIiwiZXhwIjoxNTQxODUwOTM3LCJpYXQiOjE1MzY2NzA1Mzd9.UsPqpk_rPmzRNxsn9nMwF_QF6Dwv6yQ1YdMXGBzEh5w
