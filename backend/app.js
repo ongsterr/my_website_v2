@@ -1,90 +1,94 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
-const cors = require('cors');
-const logger = require('morgan');
-require('dotenv').config();
+const express = require('express')
+const mongoose = require('mongoose')
+const path = require('path')
+const cors = require('cors')
+const logger = require('morgan')
+const helmet = require('helmet')
+require('dotenv').config()
 
 // Requiring in models (before routers)
-const passportConfig = require('./config/passport');
-const userModel = require('./models/User');
-const articleModel = require('./models/Article');
+const passportConfig = require('./config/passport')
+const userModel = require('./models/User')
+const articleModel = require('./models/Article')
 
 // Requiring in routers
-const router = require('./routes');
+const router = require('./routes')
 
 // Create global app object
-const app = express();
+const app = express()
+
+// Setting security headers
+app.use(helmet())
 
 // Setup CORS
 const corsOptions = {
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+	origin: 'http://localhost:3000',
+	optionsSuccessStatus: 200,
+}
+app.use(cors(corsOptions))
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === 'production'
 
 // Adding middlewares
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(logger('dev'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Adding routers
-app.use('/', router);
+app.use('/', router)
 
 // Connect to db first before starting server
-const options = { useNewUrlParser: true };
+const options = { useNewUrlParser: true }
 if (isProduction) {
-  mongoose.connect(
-    process.env.MONGODB_URI,
-    options
-  );
+	mongoose.connect(
+		process.env.MONGODB_URI,
+		options
+	)
 } else {
-  mongoose
-    .connect(
-      process.env.MONGODB_TEST_URI,
-      options
-    )
-    .then(() => console.log('Mongodb connection established :)'))
-    .catch(err => console.error(`Mongodb failure: ${err.message}`));
-  mongoose.set('debug', true);
+	mongoose
+		.connect(
+			process.env.MONGODB_TEST_URI,
+			options
+		)
+		.then(() => console.log('Mongodb connection established :)'))
+		.catch(err => console.error(`Mongodb failure: ${err.message}`))
+	mongoose.set('debug', true)
 }
 
 /// Catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+	const err = new Error('Not Found')
+	err.status = 404
+	next(err)
+})
 
 // Error handlers
 // Development error handler will print stacktrace
 if (!isProduction) {
-  app.use((err, req, res, next) => {
-    res.status(err.status || 500);
-    res.json({
-      errors: {
-        message: err.message,
-        error: err,
-      },
-    });
-  });
+	app.use((err, req, res, next) => {
+		res.status(err.status || 500)
+		res.json({
+			errors: {
+				message: err.message,
+				error: err,
+			},
+		})
+	})
 }
 
 // Production error handler - no stacktraces leaked to user
 app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.json({
-    errors: {
-      message: err.message,
-      error: {},
-    },
-  });
-});
+	res.status(err.status || 500)
+	res.json({
+		errors: {
+			message: err.message,
+			error: {},
+		},
+	})
+})
 
 // Finally, let's start our server...
 const server = app.listen(process.env.PORT || 3001, () => {
-  console.log('Listening on port ' + server.address().port);
-});
+	console.log('Listening on port ' + server.address().port)
+})
