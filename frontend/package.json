@@ -20,7 +20,7 @@
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject"
 	},
-	"proxy": "http://server:8000",
+	"proxy": "http://localhost:3001",
 	"moduleRoots": [
 		"src"
 	]
