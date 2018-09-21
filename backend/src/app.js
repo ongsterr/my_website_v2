@@ -22,7 +22,11 @@ app.use(helmet())
 
 // Setup CORS
 const corsOptions = {
-	origin: 'http://localhost:3000',
+	origin: [
+		'http://localhost:3000',
+		'https://chrisongg.com',
+		'https://www.chrisongg.com',
+	],
 	optionsSuccessStatus: 200,
 }
 app.use(cors(corsOptions))
