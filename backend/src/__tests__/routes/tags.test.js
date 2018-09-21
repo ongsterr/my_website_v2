@@ -1,14 +1,29 @@
-const requests = require('../../utility/api');
+const mongoose = require('mongoose')
+require('dotenv').config()
+
+const requests = require('../../utility/api')
 
 describe('Testing all /tags endpoints', () => {
-  describe('Fetching all tags from api', () => {
-    const url = '/tags';
+	beforeAll(() => {
+		const testDb = process.env.MONGODB_TEST_URI
+		mongoose.connect(
+			testDb,
+			{
+				useNewUrlParser: true,
+			}
+		)
+	})
 
-    it('should return an array of tags', async () => {
-      const response = await requests.get(url);
-      const { data } = response;
+	afterAll(done => {
+		mongoose.disconnect(done)
+	})
 
-      expect(Array.isArray(data.tags)).toBeTruthy();
-    });
-  });
-});
+	describe('Fetching all tags from api', () => {
+		it('should return an array of tags', async () => {
+			const url = '/tags'
+			const response = await requests.get(url)
+
+			expect(Array.isArray(response.body.tags)).toBeTruthy()
+		})
+	})
+})
