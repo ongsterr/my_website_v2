@@ -16,10 +16,12 @@ frontend/coverage
 
 # production
 frontend/build
-frontend/src/__css__/semantic
 
 # deployment
 Dockerrun.aws.json
 Dockerfile
 app.yaml
 docker-compose.yml
+
+# posts
+posts
