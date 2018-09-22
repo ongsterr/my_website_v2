@@ -56,6 +56,7 @@ if (isProduction) {
 		process.env.MONGODB_URI,
 		options
 	)
+	mongoose.set('useCreateIndex', true)
 } else {
 	mongoose
 		.connect(
@@ -64,6 +65,7 @@ if (isProduction) {
 		)
 		.then(() => console.log('Mongodb connection established :)'))
 		.catch(err => console.error(`Mongodb failure: ${err.message}`))
+	mongoose.set('useCreateIndex', true)
 	mongoose.set('debug', true)
 }
 
