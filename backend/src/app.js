@@ -26,6 +26,8 @@ const corsOptions = {
 		'http://localhost:3000',
 		'https://chrisongg.com',
 		'https://www.chrisongg.com',
+		'http://www.chrisongg.com',
+		'http://chrisongg.com',
 	],
 	optionsSuccessStatus: 200,
 }
