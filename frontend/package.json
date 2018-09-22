@@ -23,6 +23,12 @@
 	"moduleRoots": [
 		"src"
 	],
+	"proxy": [
+		"http://www.chrisongg.com",
+		"https://www.chrisongg.com",
+		"http://chrisongg.com",
+		"https://chrisongg.com"
+	],
 	"devDependencies": {
 		"serve": "^10.0.1"
 	}
