@@ -30,15 +30,21 @@ const hiddenCard = i => {
 			return (
 				<div className="w-100 h-100 child bg-black-10">
 					<div className="flex flex-column justify-between w-100 h-100">
-						<div className="row f1 fw9 h4 pt4 ph3 white">
-							<div>Today is </div>
+						<div className="row f1 fw10 h4 pt4 ph3 white">
+							<div>
+								{moment()
+									.format('dddd')
+									.toUpperCase()}
+							</div>
 							&nbsp;
 							<div>
-								<span>{moment().format('Do MMM YYYY')}</span>
+								<span className="ml4">{moment().format('Do MMM YYYY')}</span>
 							</div>
 						</div>
-						<div className="row f1 fw9 h4 pt4 ph3 white">
-							<div>@ Melbourne</div>
+						<div className="row f1 fw10 h4 pt4 ph3">
+							<div className="white">________</div>
+							&nbsp;
+							<div style={{ color: 'rgba(252, 74, 26, 0.8)' }}>CARPE DIEM</div>
 						</div>
 					</div>
 				</div>
