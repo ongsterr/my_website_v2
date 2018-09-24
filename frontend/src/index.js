@@ -1,3 +1,6 @@
+import 'core-js/es6/map'
+import 'core-js/es6/set'
+
 import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom'
 import React from 'react'
