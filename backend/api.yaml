@@ -12,7 +12,7 @@ info:
 servers:
   - url: https://chrisongg.com/api
 paths:
-  /api/users:
+  /users:
     get:
       description: Return user username, email and token
       operationId: getUser
@@ -62,7 +62,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /api/users/login:
+  /users/login:
     post:
       description: Login to user account
       operationId: userLogin
@@ -88,7 +88,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /api/articles:
+  /articles:
     get:
       description: Get all articles from database
       operationId: getArticles
@@ -153,7 +153,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /api/articles/{:article}:
+  /articles/{:article}:
     get:
       description: Return an article based on article slug
       operationId: getArticle
@@ -216,7 +216,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /api/tags:
+  /tags:
     get:
       description: Return all tags from all articles
       operationId: getTags
