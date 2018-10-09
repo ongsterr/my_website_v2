@@ -29,34 +29,6 @@ const workProgression = () => (
 	</div>
 )
 
-const randomRobot = [
-	'chrisongg',
-	'christabel',
-	'leemun',
-	'hello-world',
-	'ongsterr',
-][Math.round(Math.random() * 5)]
-
-const quoteBlocks = (
-	<div
-		style={{
-			backgroundImage: `url(
-        https://robohash.org/${randomRobot}.png
-            )`,
-		}}
-		className="link dt hide-child br-100 w5 h-100 cover bg-center">
-		<div className="pv4-5 ph4-5 br-100 tc w-100 h-100 child bg-black-20">
-			<h3 className="ui header">
-				<div className="white">If you're going to</div>
-				<div className="white">have a story,</div>
-				<div className="white">have a big story,</div>
-				<div className="white">or none at all.</div>
-			</h3>
-			<div className="sub header white">- J. Campbell</div>
-		</div>
-	</div>
-)
-
 const EditProfileSettings = ({ isUser }) =>
 	isUser ? (
 		<button className="ui primary basic small button">
@@ -103,7 +75,6 @@ class About extends Component {
 				</div>
 
 				<div className="flex flex-column">
-					<div className="mr4 mb4 self-center">{quoteBlocks}</div>
 					<div>
 						<div dangerouslySetInnerHTML={markup} />
 						{noBio}
