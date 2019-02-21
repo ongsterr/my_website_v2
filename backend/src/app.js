@@ -24,6 +24,7 @@ app.use(helmet())
 const corsOptions = {
   origin: [
     'http://localhost:3000',
+    'http://localhost:3001',
     'https://chrisongg.com',
     'https://www.chrisongg.com',
     'http://www.chrisongg.com',
