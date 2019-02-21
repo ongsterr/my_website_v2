@@ -9,7 +9,7 @@ frontend/node_modules
 */.env
 
 # HTTP files
-backend/routes/tests
+backend/src/routes/tests
 
 # testing
 frontend/coverage

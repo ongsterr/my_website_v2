@@ -1,31 +1,37 @@
 {
-	"name": "frontend",
-	"version": "0.1.0",
-	"private": true,
-	"dependencies": {
-		"axios": "^0.18.0",
-		"marked": "^0.5.0",
-		"moment": "^2.22.2",
-		"prop-types": "^15.6.2",
-		"react": "^16.5.1",
-		"react-dom": "^16.5.1",
-		"react-grid-layout": "^0.16.6",
-		"react-redux": "^5.0.7",
-		"react-router-dom": "^4.3.1",
-		"react-scripts": "1.1.5",
-		"redux": "^4.0.0"
-	},
-	"scripts": {
-		"start": "NODE_PATH=./src/ react-scripts start",
-		"build": "NODE_PATH=./src/ react-scripts build",
-		"test": "react-scripts test --env=jsdom",
-		"eject": "react-scripts eject"
-	},
-	"moduleRoots": [
-		"src"
-	],
-	"proxy": "http://localhost:3001/api",
-	"devDependencies": {
-		"serve": "^10.0.1"
-	}
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "marked": "^0.5.0",
+    "moment": "^2.22.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "react-grid-layout": "^0.16.6",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^2.1.5",
+    "redux": "^4.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "moduleRoots": [
+    "src"
+  ],
+  "proxy": "http://localhost:3001/api",
+  "devDependencies": {
+    "serve": "^10.0.1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
