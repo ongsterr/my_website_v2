@@ -22,6 +22,7 @@ Dockerrun.aws.json
 Dockerfile
 app.yaml
 docker-compose.yml
+.gcloudignore
 
 # posts
 posts
